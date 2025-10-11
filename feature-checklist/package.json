@@ -1,0 +1,27 @@
+{
+  "name": "architecture-dashboard",
+  "version": "1.0.0",
+  "description": "건축 데이터 관리 및 의사결정 지원 대시보드",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server -p 3000 -o",
+    "build": "echo 'Static files ready for deployment'",
+    "dev": "npx live-server --port=3000 --open=/index.html"
+  },
+  "keywords": [
+    "dashboard",
+    "architecture",
+    "construction",
+    "data-visualization",
+    "interactive"
+  ],
+  "author": "Architecture Dashboard Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.0"
+  }
+}

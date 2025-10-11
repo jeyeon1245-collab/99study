@@ -1,0 +1,16 @@
+{
+  "name": "건축 데이터 대시보드",
+  "short_name": "건축 대시보드",
+  "description": "건축 데이터 관리 및 의사결정 지원 대시보드",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#667eea",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>건축 데이터 대시보드</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+    <link rel="manifest" href="public/manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <span>건축 대시보드</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <h3>메뉴</h3>
+                <ul>
+                    <li class="active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>대시보드</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-building"></i>
+                        <span>건물 관리</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-hard-hat"></i>
+                        <span>공사 현황</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>검토사항</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="nav-section">
+                <h3>분석</h3>
+                <ul>
+                    <li>
+                        <i class="fas fa-chart-bar"></i>
+                        <span>성과 분석</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>일정 관리</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>리스크 관리</span>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="main-content">
+        <!-- 헤더 -->
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span>홈</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>대시보드</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="건물명, 공사번호로 검색...">
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="filter-dropdown">
+                    <button class="filter-btn">
+                        <i class="fas fa-filter"></i>
+                        필터
+                    </button>
+                    <div class="filter-menu">
+                        <div class="filter-group">
+                            <label>지역</label>
+                            <select id="region-filter">
+                                <option value="">전체</option>
+                                <option value="seoul">서울</option>
+                                <option value="busan">부산</option>
+                                <option value="daegu">대구</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>공사 상태</label>
+                            <select id="status-filter">
+                                <option value="">전체</option>
+                                <option value="planning">계획</option>
+                                <option value="ongoing">진행중</option>
+                                <option value="completed">완료</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label>기간</label>
+                            <select id="period-filter">
+                                <option value="all">전체</option>
+                                <option value="month">이번 달</option>
+                                <option value="quarter">이번 분기</option>
+                                <option value="year">올해</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>관리자</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 대시보드 콘텐츠 -->
+        <div class="dashboard-content">
+            <!-- KPI 카드들 -->
+            <div class="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>총 건물 수</h3>
+                        <div class="kpi-value">247</div>
+                        <div class="kpi-change positive">+12% 이번 달</div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>진행중인 공사</h3>
+                        <div class="kpi-value">89</div>
+                        <div class="kpi-change positive">+5% 이번 주</div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>검토 완료</h3>
+                        <div class="kpi-value">1,234</div>
+                        <div class="kpi-change positive">+8% 이번 달</div>
+                    </div>
+                </div>
+                
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="kpi-content">
+                        <h3>대기중인 검토</h3>
+                        <div class="kpi-value">56</div>
+                        <div class="kpi-change negative">-3% 이번 주</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 차트 섹션 -->
+            <div class="charts-section">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>월별 공사 현황</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-period="month">월별</button>
+                            <button class="chart-btn" data-period="quarter">분기별</button>
+                            <button class="chart-btn" data-period="year">연별</button>
+                        </div>
+                    </div>
+                    <canvas id="constructionChart"></canvas>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>지역별 건물 분포</h3>
+                    </div>
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- 데이터 테이블 -->
+            <div class="table-section">
+                <div class="table-header">
+                    <h3>건물 현황 상세</h3>
+                    <div class="table-controls">
+                        <button class="add-btn" onclick="showAddModal()">
+                            <i class="fas fa-plus"></i>
+                            건물 추가
+                        </button>
+                        <button class="export-btn">
+                            <i class="fas fa-download"></i>
+                            내보내기
+                        </button>
+                        <button class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i>
+                            새로고침
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <table id="buildingsTable">
+                        <thead>
+                            <tr>
+                                <th>건물명</th>
+                                <th>지역</th>
+                                <th>공사 상태</th>
+                                <th>진행률</th>
+                                <th>검토사항</th>
+                                <th>담당자</th>
+                                <th>작업</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 데이터는 JavaScript로 동적 생성 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <button class="page-btn" id="prevPage">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <span class="page-info">
+                        <span id="currentPage">1</span> / <span id="totalPages">10</span>
+                    </span>
+                    <button class="page-btn" id="nextPage">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모달 -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>건물 상세 정보</h3>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-info">
+                    <div class="detail-section">
+                        <h4>기본 정보</h4>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>건물명:</label>
+                                <span id="detail-name">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>지역:</label>
+                                <span id="detail-region">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>공사 상태:</label>
+                                <span id="detail-status">-</span>
+                            </div>
+                            <div class="info-item">
+                                <label>진행률:</label>
+                                <span id="detail-progress">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>검토사항</h4>
+                        <div class="review-list" id="reviewList">
+                            <!-- 검토사항 목록 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 편집 모달 -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="editModalTitle">건물 정보 편집</h3>
+                <button class="modal-close" onclick="closeEditModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="buildingForm">
+                    <div class="form-group">
+                        <label for="editName">건물명:</label>
+                        <input type="text" id="editName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editRegion">지역:</label>
+                        <select id="editRegion" required>
+                            <option value="seoul">서울</option>
+                            <option value="busan">부산</option>
+                            <option value="daegu">대구</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editStatus">공사 상태:</label>
+                        <select id="editStatus" required>
+                            <option value="planning">계획</option>
+                            <option value="ongoing">진행중</option>
+                            <option value="completed">완료</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editProgress">진행률 (%):</label>
+                        <input type="number" id="editProgress" min="0" max="100" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editManager">담당자:</label>
+                        <input type="text" id="editManager" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="editBudget">예산:</label>
+                        <input type="text" id="editBudget" required>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel" onclick="closeEditModal()">취소</button>
+                        <button type="submit" class="btn-save">저장</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
