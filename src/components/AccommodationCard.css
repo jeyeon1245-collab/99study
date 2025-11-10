@@ -4,9 +4,10 @@
   overflow: hidden;
   margin: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  transition: transform 0.2s, height 0.3s ease;
   background-color: #fff;
   color: #333;
+  cursor: pointer;
 }
 
 .card:hover {
@@ -42,3 +43,8 @@
   font-size: 1.1rem;
   text-align: right;
 }
+
+.card-details {
+  margin-top: 15px;
+}
+

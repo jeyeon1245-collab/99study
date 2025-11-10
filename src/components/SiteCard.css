@@ -1,0 +1,36 @@
+.site-card {
+  border: 1px solid #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #f9f9f960;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.site-card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.site-card-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.site-card-img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.site-card-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.site-card-body {
+  padding: 0 15px 15px 15px;
+}

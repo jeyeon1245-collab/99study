@@ -14,7 +14,7 @@ function SearchBar({ onSearch }) {
     <div className="search-bar">
       <input 
         type="text" 
-        placeholder="현장 검색" 
+        placeholder="현장명 검색" 
         value={location} 
         onChange={handleLocationChange} 
       />

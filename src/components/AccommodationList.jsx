@@ -10,7 +10,7 @@ function AccommodationList({ accommodations }) {
   return (
     <div className="accommodation-list">
       {accommodations.map(acc => (
-        <AccommodationCard key={acc.id} accommodation={acc} />
+        <AccommodationCard key={acc['검토 넘버']} accommodation={acc} />
       ))}
     </div>
   );
